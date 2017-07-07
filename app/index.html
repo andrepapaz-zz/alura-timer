@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Alura Timer</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
     <section class="container">
         <div id="link-sobre">
@@ -14,16 +16,28 @@
         <div class="timer">
             <div class="relogio">
                 <span class="tempo">00:00:00</span>
-            </div><!--
-            --><div class='controles'>
+            </div>
+            <!--
+            -->
+            <div class='controles'>
                 <img class="botao-play" src="img/play-button.svg">
             </div>
             <div class="curso-container">
-                <span class="curso">photoshop</span>
+                <span class="curso">introducao-javascript</span>
             </div>
         </div>
 
+        <div class="group">
+            <input type="text" class="campo-adicionar" required>
+            <img src="img/plus.svg" class='botao-adicionar'>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Novo curso</label>
+        </div>
     </section>
-    <script>require('./js/renderer')</script>
+    <script>
+        require('./js/renderer')
+    </script>
 </body>
+
 </html>

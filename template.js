@@ -1,4 +1,5 @@
 const data = require( './data' );
+const { ipcMain } = require( 'electron' );
 
 module.exports = {
     templateInicial: null,
@@ -41,6 +42,60 @@ module.exports = {
         data.salvaDados( curso, '00:00:00' );
 
         return this.templateInicial;
+    },
+    geraMenuPrincipalTemplate( app ) {
+        let templateMenu = [
+            {
+                label: 'Visualizar',
+                submenu: [
+                    {
+                        label: 'Recarregar',
+                        role: 'reload'
+                    },
+                    {
+                        label: 'Menu Desenvolvedor',
+                        role: 'toggledevtools'
+                    }
+                ]
+            },
+            {
+                label: 'Janela',
+                submenu: [
+                    {
+                        label: 'Minimizar',
+                        role: 'minimize'
+                    },
+                    {
+                        label: 'Fechar',
+                        role: 'close'
+                    }
+                ]
+            },
+            {
+                label: 'Sobre',
+                submenu: [
+                    {
+                        label: 'Sobre o Alura Timer',
+                        click: () => {
+                            ipcMain.emit( 'abrir-janela-sobre' );
+                        }
+                    }
+                ]
+            }
+        ];
+
+        if ( process.platform == 'darwin' ) {
+            templateMenu.unshift( {
+                label: app.getName(),
+                submenu: [
+                    {
+                        label: 'Estou rodando no Mac!'
+                    }
+                ]
+            } )
+        }
+
+        return templateMenu;
     }
 
 }

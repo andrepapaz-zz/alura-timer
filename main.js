@@ -7,8 +7,8 @@ let mainWindow = null;
 app.on( 'ready', () => {
     console.log( 'Aplicacão iniciada' );
     mainWindow = new BrowserWindow( {
-        width: 900,
-        height: 700,
+        width: 600,
+        height: 400,
     } );
 
     tray = new Tray( __dirname + '/app/img/icon-tray.png' );
@@ -17,6 +17,11 @@ app.on( 'ready', () => {
     let trayMenu = Menu.buildFromTemplate( template );
 
     tray.setContextMenu( trayMenu );
+
+    let templateMenu = templateGenerator.geraMenuPrincipalTemplate( app );
+    let menuPrincipal = Menu.buildFromTemplate( templateMenu );
+
+    Menu.setApplicationMenu( menuPrincipal );
 
     mainWindow.loadURL( `file://${__dirname}/app/index.html` );
 
